@@ -1,0 +1,15 @@
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\LR_3.exe
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\LR_3.deps.json
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\LR_3.runtimeconfig.json
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\LR_3.dll
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\ref\LR_3.dll
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\bin\Debug\net6.0\LR_3.pdb
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.GlobalUsings.g.cs
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.AssemblyInfoInputs.cache
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.AssemblyInfo.cs
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.csproj.CoreCompileInputs.cache
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.dll
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\ref\LR_3.dll
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.pdb
+D:\ProgrammingGit\Labs\2 Semestr\OP\LR_3\LR_3\obj\Debug\net6.0\LR_3.genruntimeconfig.cache
