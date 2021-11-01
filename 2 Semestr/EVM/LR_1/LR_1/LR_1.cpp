@@ -1,20 +1,55 @@
-// LR_1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <math.h>
+int calc(int a, int d) {
+	int result = 0;
+	__asm
+	{
+		xor eax, eax//обнуление eax
+		xor ebx, ebx//обнуление ebx
+		//(24-d/4)(a*a+1)
+		mov eax, a
+
+		imul eax//a*a
+		add eax, 1//a*a+1
+		push eax
+		mov eax, d//d
+		mov ebx, 4
+		idiv ebx//d/4
+		mov ebx, eax
+		mov eax, 24
+		sub eax, ebx//24-d/4
+		pop ebx
+		cdq;
+		idiv ebx//(24-d/4)/a*a+1
+			mov result, eax
+	}
+	return result;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	setlocale(LC_ALL, "Russian");
+	std::cout << "Ассемблер. Лабораторная работа № 1" << std::endl;
+	std::cout << "Арифметические и логические команды" << std::endl;
+	std::cout << "Выполнил Кочетков Андрей Владимирович, группа 6115" << std::endl;
+	std::cout << "Вариант 7" << std::endl;
+	std::cout << "В задание необходимо реализовать функцию вычисления целочисленного " << std::endl;
+	std::cout << "выражения (24 – d/4)/(a*a + 1) на встроенном ассемблере MASM " << std::endl;
+	std::cout << "MASM в среде Microsoft Visual Studio на языке C++ " << std::endl;
+
+	int a, d;
+	std::cout << "a = ";
+	std::cin >> a;
+	std::cout << "d = ";
+	std::cin >> d;
+
+	int res1 = calc(a, d);
+	int res2 = (24 - d / 4) / (a * a + 1);
+	std::cout << "Результат в Assembler = " << res1 << std::endl;
+	std::cout << "Результат в С++ = " << res2 << std::endl;
+	system("Pause");
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
