@@ -24,16 +24,16 @@ def getBall3D(R, numberOfSteps):
     ball3D = []
 
     z = - R
-    stepZ = round(2 * R / (numberOfSteps - 1)) 
+    stepZ = 2 * R / (numberOfSteps - 1)
     
     for i in range(numberOfSteps):
         temp = []
-        Rz = round(sqrt(pow(R, 2) - pow(z, 2))) 
+        Rz = sqrt(abs(pow(R, 2) - pow(z, 2)))
         x = - Rz
-        stepX = round(2 * Rz / (numberOfSteps - 1))
-        for j in range(numberOfSteps):
-            y1 = round(sqrt(pow(Rz, 2) - pow(x, 2)))
-            y2 = round(-sqrt(pow(Rz, 2) - pow(x, 2)))
+        stepX = 2 * Rz / (numberOfSteps - 1)
+        for j in range(numberOfSteps):            
+            y1 = sqrt(abs(pow(Rz, 2) - pow(x, 2)))
+            y2 = -sqrt(abs(pow(Rz, 2) - pow(x, 2)))
             temp.append((x, y1, z))
             temp.append((x, y2, z))
             x += stepX
@@ -50,24 +50,24 @@ def getProjection(ball3D):
             xOld = dot[0]
             yOld = dot[1]
             zOld = dot[2]
-            x =  round(- xOld * cos(pi / 4) + yOld * cos(pi / 4))
-            y = round(zOld - xOld * sin(pi / 4)  - yOld * sin(pi / 4))
+            x =  - xOld * cos(pi / 4) + yOld * cos(pi / 4)
+            y = zOld - xOld * sin(pi / 4)  - yOld * sin(pi / 4)
             temp.append((x, y))
-        ball2D.append(temp)
-    testPrint(ball2D)
+        ball2D.append(temp)    
     return ball2D
 
 def start(R, step, img):
 
-    image = Image.new(mode = "RGB", size = (400, 400), color=white)
+    image = Image.new(mode = "RGB", size = (600, 600), color=white)
     
     ball3D = getBall3D(R, step)
     ball2D = getProjection(ball3D)
 
+    n = 300 # Смещение в положительную строну
+
     for i in range (len(ball2D)):
         for j in range (len(ball2D[0]) - 2):
-
-            n = 200 # Смещение в положительную строну
+            
 
             x0 = round(ball2D[i][j][0]) + n
             y0 = round(ball2D[i][j][1]) + n
@@ -75,11 +75,20 @@ def start(R, step, img):
             x1 = round(ball2D[i][j + 2][0]) + n
             y1 = round(ball2D[i][j + 2][1]) + n
             
-            lineBresenham(image, colors[i % len(colors)], x0, y0, x1, y1)
-        
+            lineBresenham(image, black, x0, y0, x1, y1)
 
-        #lineBresenham(image, colors[i % len(colors)], x0, y0, x2, y2)
-        #lineBresenham(image, colors[i % len(colors)], x0, y0, x2, y2)
+    for i in range (len(ball2D) - 1):
+        for j in range (len(ball2D[0])):
+
+            x0 = round(ball2D[i][j][0]) + n
+            y0 = round(ball2D[i][j][1]) + n
+
+            x1 = round(ball2D[i + 1][j][0]) + n
+            y1 = round(ball2D[i + 1][j][1]) + n
+            
+            lineBresenham(image, black, x0, y0, x1, y1)
+        
+        
 
     showImage(img, image)
         

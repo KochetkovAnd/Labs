@@ -13,11 +13,11 @@ from PIL.ImageQt import ImageQt
 from fn import *
 
 
-width = 800
-height = 500
+width = 1600
+height = 840
 
-R = 50
-numbeOfSteps = 8
+R = 200
+numbeOfSteps = 5
 
 app = QApplication([])
 win = QWidget()
@@ -35,8 +35,8 @@ row1.addWidget(image1)
 row1.addWidget(image2)
 
 col = QVBoxLayout()
-col.addWidget(info, 20)
-col.addLayout(row1, 80)
+col.addWidget(info, 5)
+col.addLayout(row1, 95)
 
 win.setLayout(col)
 win.show()
