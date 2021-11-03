@@ -6,36 +6,37 @@ from PIL.ImageQt import ImageQt
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
-magenta = (255, 0, 255)
-
-colors = [red, green, blue, black, magenta]
+#green = (0, 255, 0)
+#blue = (0, 0, 255)
+#magenta = (255, 0, 255)
+#
+#colors = [red, green, blue, black, magenta]
 
 frameSize = 600
 
 n = 300 # Смещение в положительную строну
 
-from fnMath import getBall3D, affinProjection, projectionToPrint, affin1, affin2, affin3
+from fnMath import *
 
 
-def start(R, step, img):
+def start(R, step, img):  
 
     image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
     addAxles(image)
-    figure = addBall(R, step, image)   
+    figure = getBall3D(R, step)
+    polygons = divisionIntoPolygons(figure)
+    printPolygons(polygons, image)
     showImage(img, image)
 
-    return figure
+    return figure    
 
 def task1(figure, img):
     image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
     addAxles(image)
 
     figureAfter = affin1(figure, 0.5, 0.5, 2)
-    figure2D = projectionToPrint(figureAfter)
-    printBall(figure2D, image) 
-
+    polygons = divisionIntoPolygons(figureAfter)
+    printPolygons(polygons, image)
     showImage(img, image)
 
 def task2(figure, img):
@@ -43,9 +44,8 @@ def task2(figure, img):
     addAxles(image)
 
     figureAfter = affin2(figure, pi/ 4)
-    figure2D = projectionToPrint(figureAfter)
-    printBall(figure2D, image) 
-
+    polygons = divisionIntoPolygons(figureAfter)
+    printPolygons(polygons, image)
     showImage(img, image)
 
 def task3(figure, img):
@@ -53,9 +53,8 @@ def task3(figure, img):
     addAxles(image)
 
     figureAfter = affin3(figure, 100)
-    figure2D = projectionToPrint(figureAfter)
-    printBall(figure2D, image) 
-
+    polygons = divisionIntoPolygons(figureAfter)
+    printPolygons(polygons, image)
     showImage(img, image)
 
 def addAxles(image):  
@@ -64,52 +63,49 @@ def addAxles(image):
     axles2D = projectionToPrint(axles3D)
 
     x0 = round(axles2D[0][0][0]) + n
-    y0 = Ny(round(axles2D[0][0][1]) + n)
+    y0 = round(axles2D[0][0][1]) + n
 
     x1 = round(axles2D[0][1][0]) + n
-    y1 = Ny(round(axles2D[0][1][1]) + n)
+    y1 = round(axles2D[0][1][1]) + n
 
     x2 = round(axles2D[0][2][0]) + n
-    y2 = Ny(round(axles2D[0][2][1]) + n)
+    y2 = round(axles2D[0][2][1]) + n
 
     x3 = round(axles2D[0][3][0]) + n
-    y3 = Ny(round(axles2D[0][3][1]) + n)
+    y3 = round(axles2D[0][3][1]) + n
 
     lineBresenham(image, red, x0, y0, x1, y1)
     lineBresenham(image, red, x0, y0, x2, y2)
     lineBresenham(image, red, x0, y0, x3, y3)
 
-def addBall(R, step, image):
-    ball3D = getBall3D(R, step)
-    ball2D = projectionToPrint(ball3D)
-    printBall(ball2D, image)   
+def printPolygons(polygons, image):
 
-    return ball3D
+    for polygon in polygons:
+        xN, yN, zN = normalVector(polygon)
+        if round(xN + yN + zN) >= 0:
+            M1 = polygon[0]
+            M2 = polygon[1]
+            M3 = polygon[2]
+            M4 = polygon[3]
 
-def printBall(ball2D, image):
+            x1, y1 = getXY(M1)
+            x2, y2 = getXY(M2)
+            x3, y3 = getXY(M3)
+            x4, y4 = getXY(M4)
+            x1 += n
+            x2 += n
+            x3 += n
+            x4 += n
 
-    for i in range (len(ball2D)):
-        for j in range (len(ball2D[0]) - 1):            
+            y1 += n
+            y2 += n
+            y3 += n
+            y4 += n
 
-            x0 = round(ball2D[i][j][0]) + n
-            y0 = Ny(round(ball2D[i][j][1]) + n)
-
-            x1 = round(ball2D[i][j + 1][0]) + n
-            y1 = Ny(round(ball2D[i][j + 1][1]) + n)
-            
-            lineBresenham(image, black, x0, y0, x1, y1)
-
-    for i in range (len(ball2D) - 1):
-        for j in range (len(ball2D[0])):
-
-            x0 = round(ball2D[i][j][0]) + n
-            y0 = Ny(round(ball2D[i][j][1]) + n)
-
-            x1 = round(ball2D[i + 1][j][0]) + n
-            y1 = Ny(round(ball2D[i + 1][j][1]) + n)
-            
-            lineBresenham(image, black, x0, y0, x1, y1)
-
+            lineBresenham(image, black, x1, y1, x2, y2)
+            lineBresenham(image, black, x2, y2, x3, y3)
+            lineBresenham(image, black, x3, y3, x4, y4)
+            lineBresenham(image, black, x4, y4, x1, y1)   
 
 def showImage(image, picture):
     image.hide()
@@ -189,6 +185,3 @@ def lineBresenham(img, color, x0, y0, x1, y1): #Инкрементный алг�
             y += 1
             img.putpixel((x, y), color)
             i+=1
-
-def Ny(y):
-    return frameSize - y + 1

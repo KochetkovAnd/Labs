@@ -1,23 +1,14 @@
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QPushButton, QLabel, QFileDialog, QLineEdit,
+    QApplication, QWidget, QPushButton, QLabel,
     QHBoxLayout, QVBoxLayout
 )
-
-from PyQt5.QtCore import Qt, center # нужна константа Qt.KeepAspectRatio для изменения размеров с сохранением пропорций
-from PyQt5.QtGui import QPixmap # оптимизированная для показа на экране картинка
-
-from PIL import Image
-from PIL.ImageQt import ImageQt
-
-from fnGraf import start, task1, task2, task3
-
+from fnGraf import *
 
 width = 1600
 height = 840
 
 R = 100
-numbeOfSteps = 10
+numbeOfSteps = 20
 
 app = QApplication([])
 win = QWidget()
@@ -37,7 +28,6 @@ row1.addWidget(info)
 row1.addWidget(button_task1)
 row1.addWidget(button_task2)
 row1.addWidget(button_task3)
-
 
 row2 = QHBoxLayout()
 row2.addWidget(image1)
@@ -64,7 +54,5 @@ def onClick3():
 button_task1.clicked.connect(onClick1)
 button_task2.clicked.connect(onClick2)
 button_task3.clicked.connect(onClick3)
-
-
 
 app.exec()

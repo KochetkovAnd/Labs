@@ -23,24 +23,30 @@ def getBall3D(R, numberOfSteps):
         z += stepZ
     return ball3D
 
-def affinProjection(ball3D, a, b):
-    
-    projection = []
+def divisionIntoPolygons(ball3D):
 
-    for i in range(len(ball3D)):
-        temp = []
-        for j in range(len(ball3D[0])):
-            dot = ball3D[i][j]
-            xOld = dot[0]
-            yOld = dot[1]
-            zOld = dot[2]
-            xNew = xOld * cos(a) + yOld * sin(a)
-            yNew = - xOld * sin(a) * cos(b) + yOld * cos(a) * cos(b) + zOld * sin(b)
-            zNew = xOld * sin(a) * sin(b) - yOld * cos(a) * sin(b) + zOld * cos(b)
-            temp.append((xNew, yNew, zNew))
-        projection.append(temp)
+    polygons = []
 
-    return projection
+    for i in range(len(ball3D) - 1):
+        for j in range(len(ball3D[0]) - 1):
+            M1 = ball3D[i][j]
+            M2 = ball3D[i][j + 1]
+            M3 = ball3D[i + 1][j + 1]
+            M4 = ball3D[i + 1][j]
+            if not(round(M1[0]) == round(M2[0]) and round(M1[1]) == round(M2[1]) and round(M1[1]) == round(M2[1]) and round(M1[2]) == round(M2[2]) and round(M1[0]) == round(M2[0]) and round(M3[1]) == round(M4[1]) and round(M3[1]) == round(M4[1]) and round(M3[2]) == round(M4[2])):
+                polygons.append((M1, M2, M3, M4))
+
+    return polygons
+
+def getXY(dot):
+    xOld = dot[0]
+    yOld = dot[1]
+    zOld = dot[2]
+
+    x =  - xOld * cos(pi / 4) + yOld * cos(pi / 4)
+    y = zOld - xOld * sin(pi / 4)  - yOld * sin(pi / 4)
+
+    return round(x), round(y)
 
 def projectionToPrint(ball3D):
     ball2D = []
@@ -56,7 +62,6 @@ def projectionToPrint(ball3D):
             temp.append((x, y))
         ball2D.append(temp)    
     return ball2D
-
 
 def affin1(figure, kx, ky, kz):
     figureafter = []
@@ -111,3 +116,25 @@ def affin3(figure, a):
         figureafter.append(temp)
 
     return figureafter 
+
+def normalVector(dots):
+
+    M1 = dots[0]
+    M2 = dots[1]
+    M3 = dots[2]
+    M4 = dots[3]
+
+    if round(M1[0]) == round(M2[0]) and round(M1[1]) == round(M2[1]) and round(M1[2]) == round(M2[2]):
+        x1, y1, z1 = M1[0], M1[1], M1[2] 
+        x2, y2, z2 = M3[0], M3[1], M3[2] 
+        x3, y3, z3 = M4[0], M4[1], M4[2]
+    else:
+        x1, y1, z1 = M1[0], M1[1], M1[2] 
+        x2, y2, z2 = M2[0], M2[1], M2[2] 
+        x3, y3, z3 = M3[0], M3[1], M3[2]    
+
+    xN = (y2 - y1) * (z3 - z1) - (z2 - z1) * (y3 - y1)
+    yN = (z2 - z1) * (x3 - x1) - (x2 - x1) * (z3 - z1)
+    zN = (y3 - y1) * (x2 - x1) - (y2 - y1) * (x3 - x1)
+
+    return xN, yN, zN
