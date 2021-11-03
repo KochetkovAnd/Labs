@@ -16,7 +16,7 @@ frameSize = 600
 
 n = 300 # Смещение в положительную строну
 
-from fnMath import *
+from fnMath1 import *
 
 
 def start(R, step, img):  
@@ -105,7 +105,31 @@ def printPolygons(polygons, image):
             lineBresenham(image, black, x1, y1, x2, y2)
             lineBresenham(image, black, x2, y2, x3, y3)
             lineBresenham(image, black, x3, y3, x4, y4)
-            lineBresenham(image, black, x4, y4, x1, y1)   
+            lineBresenham(image, black, x4, y4, x1, y1)
+            
+#def printBall(ball2D, image):
+#
+#    for i in range (len(ball2D)):
+#        for j in range (len(ball2D[0]) - 1):            
+#
+#            x0 = round(ball2D[i][j][0]) + n
+#            y0 = round(ball2D[i][j][1]) + n
+#
+#            x1 = round(ball2D[i][j + 1][0]) + n
+#            y1 = round(ball2D[i][j + 1][1]) + n
+#            
+#            lineBresenham(image, black, x0, y0, x1, y1)
+#
+#    for i in range (len(ball2D) - 1):
+#        for j in range (len(ball2D[0])):
+#
+#            x0 = round(ball2D[i][j][0]) + n
+#            y0 = round(ball2D[i][j][1]) + n
+#
+#            x1 = round(ball2D[i + 1][j][0]) + n
+#            y1 = round(ball2D[i + 1][j][1]) + n
+#            
+#            lineBresenham(image, black, x0, y0, x1, y1)
 
 def showImage(image, picture):
     image.hide()

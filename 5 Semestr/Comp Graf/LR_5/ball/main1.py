@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QLabel,
     QHBoxLayout, QVBoxLayout
 )
-from fnGraf import *
+from fnGraf1 import *
 
 width = 1600
 height = 840
