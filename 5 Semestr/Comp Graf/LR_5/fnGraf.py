@@ -1,13 +1,5 @@
-from math import *
+from math import pi
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import (
-    QApplication, QWidget, QPushButton, QLabel, QFileDialog, QLineEdit,
-    QHBoxLayout, QVBoxLayout
-)
-
-from PyQt5.QtCore import Qt, center # нужна константа Qt.KeepAspectRatio для изменения размеров с сохранением пропорций
-from PyQt5.QtGui import QPixmap # оптимизированная для показа на экране картинка
-
 from PIL import Image
 from PIL.ImageQt import ImageQt
 
@@ -20,60 +12,90 @@ magenta = (255, 0, 255)
 
 colors = [red, green, blue, black, magenta]
 
-def getBall3D(R, numberOfSteps):    
-    ball3D = []
+frameSize = 600
 
-    z = - R
-    stepZ = 2 * R / (numberOfSteps - 1)
-    
-    for i in range(numberOfSteps):
-        temp = []
-        Rz = sqrt(abs(pow(R, 2) - pow(z, 2)))
-        x = - Rz
-        stepX = 2 * Rz / (numberOfSteps - 1)
-        for j in range(numberOfSteps):            
-            y1 = sqrt(abs(pow(Rz, 2) - pow(x, 2)))
-            y2 = -sqrt(abs(pow(Rz, 2) - pow(x, 2)))
-            temp.append((x, y1, z))
-            temp.append((x, y2, z))
-            x += stepX
-        ball3D.append(temp)
-        z += stepZ
-    return ball3D
+n = 300 # Смещение в положительную строну
 
-def getProjection(ball3D):
-    ball2D = []
-    for i in range(len(ball3D)):
-        temp = []
-        for j in range(len(ball3D[0])):
-            dot = ball3D[i][j]
-            xOld = dot[0]
-            yOld = dot[1]
-            zOld = dot[2]
-            x =  - xOld * cos(pi / 4) + yOld * cos(pi / 4)
-            y = zOld - xOld * sin(pi / 4)  - yOld * sin(pi / 4)
-            temp.append((x, y))
-        ball2D.append(temp)    
-    return ball2D
+from fnMath import getBall3D, affinProjection, projectionToPrint, affin1, affin2, affin3
+
 
 def start(R, step, img):
 
-    image = Image.new(mode = "RGB", size = (600, 600), color=white)
-    
-    ball3D = getBall3D(R, step)
-    ball2D = getProjection(ball3D)
+    image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
+    addAxles(image)
+    figure = addBall(R, step, image)   
+    showImage(img, image)
 
-    n = 300 # Смещение в положительную строну
+    return figure
+
+def task1(figure, img):
+    image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
+    addAxles(image)
+
+    figureAfter = affin1(figure, 0.5, 0.5, 2)
+    figure2D = projectionToPrint(figureAfter)
+    printBall(figure2D, image) 
+
+    showImage(img, image)
+
+def task2(figure, img):
+    image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
+    addAxles(image)
+
+    figureAfter = affin2(figure, pi/ 4)
+    figure2D = projectionToPrint(figureAfter)
+    printBall(figure2D, image) 
+
+    showImage(img, image)
+
+def task3(figure, img):
+    image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
+    addAxles(image)
+
+    figureAfter = affin3(figure, 100)
+    figure2D = projectionToPrint(figureAfter)
+    printBall(figure2D, image) 
+
+    showImage(img, image)
+
+def addAxles(image):  
+    axlesLenght = 250
+    axles3D = [[(0, 0, 0),(axlesLenght,0 , 0),(0, axlesLenght, 0),(0, 0, axlesLenght)]]
+    axles2D = projectionToPrint(axles3D)
+
+    x0 = round(axles2D[0][0][0]) + n
+    y0 = Ny(round(axles2D[0][0][1]) + n)
+
+    x1 = round(axles2D[0][1][0]) + n
+    y1 = Ny(round(axles2D[0][1][1]) + n)
+
+    x2 = round(axles2D[0][2][0]) + n
+    y2 = Ny(round(axles2D[0][2][1]) + n)
+
+    x3 = round(axles2D[0][3][0]) + n
+    y3 = Ny(round(axles2D[0][3][1]) + n)
+
+    lineBresenham(image, red, x0, y0, x1, y1)
+    lineBresenham(image, red, x0, y0, x2, y2)
+    lineBresenham(image, red, x0, y0, x3, y3)
+
+def addBall(R, step, image):
+    ball3D = getBall3D(R, step)
+    ball2D = projectionToPrint(ball3D)
+    printBall(ball2D, image)   
+
+    return ball3D
+
+def printBall(ball2D, image):
 
     for i in range (len(ball2D)):
-        for j in range (len(ball2D[0]) - 2):
-            
+        for j in range (len(ball2D[0]) - 1):            
 
             x0 = round(ball2D[i][j][0]) + n
-            y0 = round(ball2D[i][j][1]) + n
+            y0 = Ny(round(ball2D[i][j][1]) + n)
 
-            x1 = round(ball2D[i][j + 2][0]) + n
-            y1 = round(ball2D[i][j + 2][1]) + n
+            x1 = round(ball2D[i][j + 1][0]) + n
+            y1 = Ny(round(ball2D[i][j + 1][1]) + n)
             
             lineBresenham(image, black, x0, y0, x1, y1)
 
@@ -81,17 +103,12 @@ def start(R, step, img):
         for j in range (len(ball2D[0])):
 
             x0 = round(ball2D[i][j][0]) + n
-            y0 = round(ball2D[i][j][1]) + n
+            y0 = Ny(round(ball2D[i][j][1]) + n)
 
             x1 = round(ball2D[i + 1][j][0]) + n
-            y1 = round(ball2D[i + 1][j][1]) + n
+            y1 = Ny(round(ball2D[i + 1][j][1]) + n)
             
             lineBresenham(image, black, x0, y0, x1, y1)
-        
-        
-
-    showImage(img, image)
-        
 
 
 def showImage(image, picture):
@@ -103,13 +120,6 @@ def showImage(image, picture):
     #pixmapImage = pixmapImage.scaled(w, h, Qt.KeepAspectRatio)
     image.setPixmap(pixmapImage)
     image.show()
-
-def testPrint(mas):
-    print("kz")
-    for i in range(len(mas)):
-        for j in range(len(mas[0])):
-            print(mas[i][j], end='')
-        print("")
 
 def lineBresenham(img, color, x0, y0, x1, y1): #Инкрементный алгоритм Брезенхама для линии
     if abs(x0 - x1) >= abs(y0 - y1):
@@ -180,4 +190,5 @@ def lineBresenham(img, color, x0, y0, x1, y1): #Инкрементный алг�
             img.putpixel((x, y), color)
             i+=1
 
-
+def Ny(y):
+    return frameSize - y + 1
