@@ -21,9 +21,9 @@ def getSuperToroid3D(d, numberOfSteps, n, m):
             #y = (2 + cos(v) ** m) * sin(u) ** n * 50
             #z = sin(v) ** m * 50
 
-            x = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(cos(u)) * abs(cos(u)) ** n * 50
-            y = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(sin(u)) * abs(sin(u)) ** n * 50
-            z = sign(sin(v)) * abs(sin(v)) ** m * 50
+            x = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(cos(u)) * abs(cos(u)) ** n * d
+            y = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(sin(u)) * abs(sin(u)) ** n * d
+            z = sign(sin(v)) * abs(sin(v)) ** m * d
 
             temp.append((x, y, z))
         ball3D.append(temp)
