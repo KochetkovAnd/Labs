@@ -11,9 +11,20 @@ def getSuperToroid3D(d, numberOfSteps, n, m):
         temp = []
         for j in range(numberOfSteps):
             u = - pi + j * step
-            x = (d + pow(cos(v), 2 / m) * d / 2) * pow(cos(u), 2 / n)
-            y = (d + pow(cos(v), 2 / m) * d / 2) * pow(sin(u), 2 / n)
-            z = pow(sin(v), 2 / m) * d / 2
+
+            #test1 = cos(v) ** m
+            #test2 =  pow(cos(u), n)
+            #test3 = (2 + cos(v) ** m)
+            #test4 = x = (2 + cos(v) ** m) * cos(u) ** n * 50
+
+            #x = (2 + cos(v) ** m) * cos(u) ** n * 50
+            #y = (2 + cos(v) ** m) * sin(u) ** n * 50
+            #z = sin(v) ** m * 50
+
+            x = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(cos(u)) * abs(cos(u)) ** n * 50
+            y = (2 + sign(cos(v)) * abs(cos(v)) ** m) * sign(sin(u)) * abs(sin(u)) ** n * 50
+            z = sign(sin(v)) * abs(sin(v)) ** m * 50
+
             temp.append((x, y, z))
         ball3D.append(temp)
     return ball3D
@@ -133,3 +144,11 @@ def normalVector(dots):
     zN = (y3 - y1) * (x2 - x1) - (y2 - y1) * (x3 - x1)
 
     return xN, yN, zN
+
+def sign(x):
+    if x > 0:
+        return 1
+    elif x < 0:
+        return -1
+    else:
+        return 0

@@ -7,9 +7,9 @@ from fnMain2 import *
 width = 1600
 height = 840
 
-d = 100
-n = 2
-m = 2
+d = 1
+n = 1
+m = 1
 numbeOfSteps = 40
 
 app = QApplication([])
@@ -52,7 +52,7 @@ def onClick2():
 
 def onClick3():    
     task3(figure3D, image2)
-    
+
 button_task1.clicked.connect(onClick1)
 button_task2.clicked.connect(onClick2)
 button_task3.clicked.connect(onClick3)
