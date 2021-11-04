@@ -7,6 +7,10 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 
+n = 300
+
+from fnMath2 import *
+
 def showImage(image, picture):
     image.hide()
     qim = ImageQt(picture)
@@ -85,3 +89,53 @@ def lineBresenham(img, color, x0, y0, x1, y1): #Инкрементный алг�
             y += 1
             img.putpixel((x, y), color)
             i+=1
+
+def addAxles(image):  
+    axlesLenght = 250
+    axles3D = [[(0, 0, 0),(axlesLenght,0 , 0),(0, axlesLenght, 0),(0, 0, axlesLenght)]]
+    axles2D = projectionToPrint(axles3D)
+
+    x0 = round(axles2D[0][0][0]) + n
+    y0 = round(axles2D[0][0][1]) + n
+
+    x1 = round(axles2D[0][1][0]) + n
+    y1 = round(axles2D[0][1][1]) + n
+
+    x2 = round(axles2D[0][2][0]) + n
+    y2 = round(axles2D[0][2][1]) + n
+
+    x3 = round(axles2D[0][3][0]) + n
+    y3 = round(axles2D[0][3][1]) + n
+
+    lineBresenham(image, red, x0, y0, x1, y1)
+    lineBresenham(image, red, x0, y0, x2, y2)
+    lineBresenham(image, red, x0, y0, x3, y3)
+
+def printPolygons(polygons, image):
+
+    for polygon in polygons:
+        xN, yN, zN = normalVector(polygon)
+        if round(xN + yN + zN) >= 0:
+            M1 = polygon[0]
+            M2 = polygon[1]
+            M3 = polygon[2]
+            M4 = polygon[3]
+
+            x1, y1 = getXY(M1)
+            x2, y2 = getXY(M2)
+            x3, y3 = getXY(M3)
+            x4, y4 = getXY(M4)
+            x1 += n
+            x2 += n
+            x3 += n
+            x4 += n
+
+            y1 += n
+            y2 += n
+            y3 += n
+            y4 += n
+
+            lineBresenham(image, black, x1, y1, x2, y2)
+            lineBresenham(image, black, x2, y2, x3, y3)
+            lineBresenham(image, black, x3, y3, x4, y4)
+            lineBresenham(image, black, x4, y4, x1, y1)

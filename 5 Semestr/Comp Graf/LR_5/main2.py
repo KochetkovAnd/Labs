@@ -2,13 +2,15 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QLabel,
     QHBoxLayout, QVBoxLayout
 )
-from fnMain import *
+from fnMain2 import *
 
 width = 1600
 height = 840
 
 d = 100
-numbeOfSteps = 20
+n = 2
+m = 2
+numbeOfSteps = 40
 
 app = QApplication([])
 win = QWidget()
@@ -40,19 +42,19 @@ col.addLayout(row2, 95)
 win.setLayout(col)
 win.show()
 
-figure3D =  start(d, numbeOfSteps, image1)
+figure3D =  start(d, numbeOfSteps, n, m, image1)
 
-#def onClick1():
-#    task1(figure3D, image2)
-#
-#def onClick2():
-#    task2(figure3D, image2)
-#
-#def onClick3():    
-#    task3(figure3D, image2)
+def onClick1():
+    task1(figure3D, image2)
 
-#button_task1.clicked.connect(onClick1)
-#button_task2.clicked.connect(onClick2)
-#button_task3.clicked.connect(onClick3)
+def onClick2():
+    task2(figure3D, image2)
+
+def onClick3():    
+    task3(figure3D, image2)
+    
+button_task1.clicked.connect(onClick1)
+button_task2.clicked.connect(onClick2)
+button_task3.clicked.connect(onClick3)
 
 app.exec()
