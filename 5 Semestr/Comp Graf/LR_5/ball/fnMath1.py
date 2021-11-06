@@ -63,7 +63,7 @@ def projectionToPrint(ball3D):
         ball2D.append(temp)    
     return ball2D
 
-def affin1(figure, kx, ky, kz):
+def affinStretch(figure, kx, ky, kz):
     figureafter = []
 
     for i in range(len(figure)):
@@ -81,7 +81,7 @@ def affin1(figure, kx, ky, kz):
 
     return figureafter 
 
-def affin2(figure, a):
+def affinRotateX(figure, a):
     figureafter = []
 
     for i in range(len(figure)):
@@ -99,7 +99,25 @@ def affin2(figure, a):
 
     return figureafter 
 
-def affin3(figure, a):
+def affinRotateZ(figure, a):
+    figureafter = []
+
+    for i in range(len(figure)):
+        temp = []
+        for j in range(len(figure[0])):
+            dot = figure[i][j]
+            xOld = dot[0]
+            yOld = dot[1]
+            zOld = dot[2]
+            xNew = xOld * cos(a) - yOld * sin(a)
+            yNew = xOld * sin(a) + yOld * cos(a)
+            zNew = zOld
+            temp.append((xNew, yNew, zNew))
+        figureafter.append(temp)
+
+    return figureafter 
+
+def affinMove(figure, a):
     figureafter = []
 
     for i in range(len(figure)):
