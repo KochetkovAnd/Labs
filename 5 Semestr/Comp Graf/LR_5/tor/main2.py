@@ -7,7 +7,7 @@ from fnMain2 import *
 width = 1600
 height = 840
 
-d = 50
+d = 70
 n = 1
 m = 1
 numbeOfSteps = 40
