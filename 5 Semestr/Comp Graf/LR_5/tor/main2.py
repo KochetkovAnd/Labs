@@ -7,7 +7,7 @@ from fnMain2 import *
 width = 1600
 height = 840
 
-d = 70
+d = 35
 n = 1
 m = 1
 numbeOfSteps = 40
@@ -18,18 +18,21 @@ win.resize(width, height)
 win.setWindowTitle("LR_5")
 
 info = QLabel("Проекция супертороида")
-button_task1 = QPushButton("Преобразование 1")
-button_task2 = QPushButton("Преобразование 2")
-button_task3 = QPushButton("Преобразование 3")
+button_stretch = QPushButton("Растяжение")
+button_rotate_x = QPushButton("Вращение вокруг оси X")
+button_rotate_z = QPushButton("Вращение вокруг оси Z")
+button_move = QPushButton("Переместить")
 
 image1 = QLabel("Картинка 1")
 image2 = QLabel("Картинка 2")
 
 row1 = QHBoxLayout()
 row1.addWidget(info)
-row1.addWidget(button_task1)
-row1.addWidget(button_task2)
-row1.addWidget(button_task3)
+row1.addWidget(info)
+row1.addWidget(button_rotate_x)
+row1.addWidget(button_rotate_z)
+row1.addWidget(button_stretch)
+row1.addWidget(button_move)
 
 row2 = QHBoxLayout()
 row2.addWidget(image1)
@@ -44,17 +47,23 @@ win.show()
 
 figure3D =  start(d, numbeOfSteps, n, m, image1)
 
-def onClick1():
-    task1(figure3D, image2)
+def onStretch():
+    Stretch(figure3D, image2)
 
-def onClick2():
-    task2(figure3D, image2)
+def onRotateX():
+    global figure3D
+    figure3D = rotateX(figure3D, image2)
 
-def onClick3():    
-    task3(figure3D, image2)
+def onRotateZ():
+    global figure3D
+    figure3D = rotateZ(figure3D, image2)
 
-button_task1.clicked.connect(onClick1)
-button_task2.clicked.connect(onClick2)
-button_task3.clicked.connect(onClick3)
+def onMove():    
+    Move(figure3D, image2)
+
+button_stretch.clicked.connect(onStretch)
+button_move.clicked.connect(onMove)
+button_rotate_x.clicked.connect(onRotateX)
+button_rotate_z.clicked.connect(onRotateZ)
 
 app.exec()

@@ -26,29 +26,37 @@ def start(R, step, n, m, img):
 
     return figure  
 
-def task1(figure, img):
+def Stretch(figure, img):
     image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
     addAxles(image)
 
-    figureAfter = affin1(figure, 1.5, 1, 1)
+    figureAfter = affinStretch(figure, 0.5, 0.5, 2)
     polygons = divisionIntoPolygons(figureAfter)
     printPolygons(polygons, image)
     showImage(img, image)
 
-def task2(figure, img):
+def rotateX(figure, img):
     image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
     addAxles(image)
-
-    figureAfter = affin2(figure, pi/ 4)
+    figureAfter = affinRotateX(figure, pi/ 16)
     polygons = divisionIntoPolygons(figureAfter)
     printPolygons(polygons, image)
     showImage(img, image)
+    return figureAfter
 
-def task3(figure, img):
+def rotateZ(figure, img):
     image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
     addAxles(image)
+    figureAfter = affinRotateZ(figure, pi/ 16)
+    polygons = divisionIntoPolygons(figureAfter)
+    printPolygons(polygons, image)
+    showImage(img, image)
+    return figureAfter
 
-    figureAfter = affin3(figure, 100)
+def Move(figure, img):
+    image = Image.new(mode = "RGB", size = (frameSize, frameSize), color=white)
+    addAxles(image)
+    figureAfter = affinMove(figure, 100)
     polygons = divisionIntoPolygons(figureAfter)
     printPolygons(polygons, image)
     showImage(img, image)
