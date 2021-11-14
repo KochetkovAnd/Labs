@@ -57,7 +57,8 @@ canvas.pack()
 tr = my_turtle(Width / 2, Height / 2, pi / 2)
 
 
-
+#sdfsdfsdfsdf
+ss =33
 for i in range(N):    
     canvas.delete("all")
     tr.centr()
