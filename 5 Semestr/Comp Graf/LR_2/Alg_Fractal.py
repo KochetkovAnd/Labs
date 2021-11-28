@@ -11,6 +11,7 @@ Side = 50
 Width = int(Side * (xMax - xMin))
 Height = int(Side * (yMax - yMin))
 N = 49
+#sfgsdfsdf
 
 Colors = ["#9b2226","#ae2012","#bb3e03","#ca6702","#ee9b00","#e9d8a6","#94d2bd","#0a9396","#005f73","#001219"]
 
