@@ -8,7 +8,7 @@ width = 1600
 height = 840
 
 R = 100
-numbeOfSteps = 20
+numbeOfSteps = 5
 
 app = QApplication([])
 win = QWidget()

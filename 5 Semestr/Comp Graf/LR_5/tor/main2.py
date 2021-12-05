@@ -10,7 +10,7 @@ height = 840
 d = 35
 n = 1
 m = 1
-numbeOfSteps = 40
+numbeOfSteps = 20
 
 app = QApplication([])
 win = QWidget()
