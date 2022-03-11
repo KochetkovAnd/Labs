@@ -2,7 +2,7 @@ import re
 from helperFunctions import *
 
 def getURL(page):
-    regex = '<a href="[\w|\.|\/|:|-]+"'
+    regex = '<a href="[^"\']+"'
     URLList = re.findall(regex, page)
 
     InnerLinkList = []

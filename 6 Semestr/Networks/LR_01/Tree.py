@@ -1,4 +1,3 @@
-from pydoc import text
 from helperFunctions import *
 
 class Root():
@@ -23,7 +22,7 @@ class Tree():
         self.mainRoot = Root("/")
         for l in list:
             curRoot = self.mainRoot
-            words = removeEmptyElements(l.split("/"))
+            words = removeEmptyElements(l.replace("?", "/").replace("=", "/").split("/"))
             for w in words:
                 if curRoot.existChild(w):
                     curRoot = curRoot.findChild(w)

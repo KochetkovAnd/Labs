@@ -1,7 +1,7 @@
 from main import *
 from PyQt5.QtWidgets import *
 
-width = 1200
+width = 1600
 height = 800
 
 app = QApplication([])

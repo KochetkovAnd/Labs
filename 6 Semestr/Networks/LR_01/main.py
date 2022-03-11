@@ -3,6 +3,8 @@ from Tree import *
 from Parser import *
 from helperFunctions import *
 
+level  = 20 # Уровень вложенности
+
 def getListByHost(host):
     port = 80
     info = "/"
@@ -11,7 +13,7 @@ def getListByHost(host):
 def recursiveCheck(allURL, info, number, host, port):
     helper = HTTPHelper(host, port)
     appendUnique(allURL, info)
-    if number < 5:    
+    if number < level:    
 
         helper.sendRequest(info, host)
         URLList = getURL(helper.getResponse())
@@ -19,6 +21,7 @@ def recursiveCheck(allURL, info, number, host, port):
         removeAlreadyChecked(allURL, URLList)
 
         for URL in URLList:
-            allURL = recursiveCheck(allURL,URL, number + 1, host, port)
+            if not URL in allURL:
+                allURL = recursiveCheck(allURL,URL, number + 1, host, port)
 
     return allURL
