@@ -13,6 +13,3 @@ def getURL(page):
             appendUnique(InnerLinkList, URL)  
 
     return InnerLinkList
-
-def checkOuterLink(link):
-    return "http" in link or "https" in link or "#" in link or "." in link

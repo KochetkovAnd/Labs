@@ -1,4 +1,5 @@
 from main import *
+from helperFunctions import *
 from PyQt5.QtWidgets import *
 
 width = 1600
@@ -40,14 +41,11 @@ col.addLayout(row2, 10)
 win.setLayout(col)
 win.show()
 
-
-
 def onClick():
     host = editText.text()
-    list = getListByHost(host)
+    list = removeURLWithV(getListByHost(host))
     treeText1.setText(listToText(list))
     treeText2.setText(Tree(list).onPrint())
-
 
 button.clicked.connect(onClick)
 app.exec()
