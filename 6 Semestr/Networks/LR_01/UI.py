@@ -21,8 +21,8 @@ label3 = QLabel("Введите адрес сайта:")
 
 
 row1 = QHBoxLayout()
-row1.addWidget(treeText1, 50)
-row1.addWidget(treeText2, 50)
+row1.addWidget(treeText1, 40)
+row1.addWidget(treeText2, 60)
 
 row2 = QHBoxLayout()
 row2.addWidget(label3, 30)
@@ -30,8 +30,8 @@ row2.addWidget(editText, 60)
 row2.addWidget(button, 10)
 
 row3 = QHBoxLayout()
-row3.addWidget(label1, 50)
-row3.addWidget(label2, 50)
+row3.addWidget(label1, 40)
+row3.addWidget(label2, 60)
 
 col = QVBoxLayout()
 col.addLayout(row3, 10)
