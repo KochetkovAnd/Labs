@@ -33,5 +33,15 @@ def removeURLWithV(list):
             list2.append(l)
     return list2
 
+def checkInnerFullLink(link, host):
+    return link.startswith("htpp://"+link)
+
 def checkOuterLink(link):
-    return "http" in link or "https" in link or "#" in link or "." in link
+    return "http" in link or "https" in link
+
+def removeImage(list):
+    list2 = []
+    for l in list:
+        if not ( "." in l) and not ("#" in l):
+            list2.append(l)
+    return list2

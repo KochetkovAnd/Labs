@@ -45,7 +45,7 @@ def onClick():
     host = editText.text()
     list = removeURLWithV(getListByHost(host))
     treeText1.setText(listToText(list))
-    treeText2.setText(Tree(list).onPrint())
+    treeText2.setText(Tree(removeImage(list)).onPrint())
 
 button.clicked.connect(onClick)
 app.exec()

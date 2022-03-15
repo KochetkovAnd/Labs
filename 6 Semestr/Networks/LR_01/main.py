@@ -15,7 +15,7 @@ def checkURL(host, port, checkedURL, startInfo):
     for info in checkedURL:
         helper = HTTPHelper(host, port)
         helper.sendRequest(info, host)
-        URLList = getURL(helper.getResponse().replace("\\r", ""))
+        URLList = getURL(helper.getResponse().replace("\\r", ""), host)
         unionList(checkedURL, URLList)
 
     return checkedURL    
