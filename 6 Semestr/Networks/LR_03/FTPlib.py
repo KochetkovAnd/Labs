@@ -1,8 +1,8 @@
 import ftplib
 
-HOST = "91.222.128.11"
-LOGIN = "testftp_guest"
-PASSWORD = "12345"
+#HOST = "91.222.128.11"
+#LOGIN = "testftp_guest"
+#PASSWORD = "12345"
 
 def removeEmpty(list):
     newlist = []
@@ -21,7 +21,7 @@ def parsePage(lines):
         directories.append(filename)
     return directories, weight
 
-def start():
+def start(HOST, LOGIN, PASSWORD):
     ftp = ftplib.FTP(HOST)
     ftp.login(LOGIN, PASSWORD)
     return recursion(ftp, "/", "/")
