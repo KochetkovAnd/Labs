@@ -1,4 +1,3 @@
-from cProfile import label
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui,QtCore
 from FTPlib import *
