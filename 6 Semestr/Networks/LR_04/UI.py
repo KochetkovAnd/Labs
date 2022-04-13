@@ -5,24 +5,75 @@ from main import *
 width = 600
 height = 400
 
+loginEmail = ""
+loginPassword = ""
+loginServerAdress = ""
+loginPort = 587
+
+
+
 app = QApplication([])
+
+win2 = QWidget()
+win2.resize(600, 200)
+win2.setWindowTitle("Данные аккаунта")
+
+labelLogin = QLabel("Логин аккаунта: ")
+labelPassword = QLabel("Пароль аккаунта: ")
+labelServerAdress = QLabel("Адрес SMTP сервера: ")
+labelPort = QLabel("Порт подключения к серверу: ")
+
+editTextLogin = QLineEdit("")
+editTextPassword = QLineEdit("")
+editTextServerAdress = QLineEdit("")
+editTextPort = QLineEdit("587")
+
+
+button2 = QPushButton("Войти")
+
+strw1 = QHBoxLayout()
+strw1.addWidget(labelLogin, 30)
+strw1.addWidget(editTextLogin, 70)
+
+strw2 = QHBoxLayout()
+strw2.addWidget(labelPassword, 30)
+strw2.addWidget(editTextPassword, 70)
+
+strw3 = QHBoxLayout()
+strw3.addWidget(labelServerAdress, 30)
+strw3.addWidget(editTextServerAdress, 70)
+
+strw4 = QHBoxLayout()
+strw4.addWidget(labelPort, 30)
+strw4.addWidget(editTextPort, 70)
+
+colw = QVBoxLayout()
+colw.addLayout(strw1)
+colw.addLayout(strw2)
+colw.addLayout(strw3)
+colw.addLayout(strw4)
+colw.addWidget(button2)
+
+win2.setLayout(colw)
+#--------------------------------------
 win = QWidget()
 win.resize(width, height)
 win.setWindowTitle("LR_4")
 
 button = QPushButton("Отправить")
+button3 = QPushButton("Прикрепить файл")
 
 label1 = QLabel("Тема письма: ")
 label2 = QLabel("Текст письма: ")
 labelEmail = QLabel("Кому")
 
-editTextEmail = QLineEdit("KochetPWR@yandex.ru")
+editTextEmail = QLineEdit("")
 editTextSubject = QLineEdit("")
 editTextMessage = QPlainTextEdit("")
 
-label1.setFont(QtGui.QFont('Arial', 16))
-label2.setFont(QtGui.QFont('Arial', 16))
-labelEmail.setFont(QtGui.QFont('Arial', 16))
+label1.setFont(QtGui.QFont('Arial', 14))
+label2.setFont(QtGui.QFont('Arial', 14))
+labelEmail.setFont(QtGui.QFont('Arial', 14))
 
 str1 = QHBoxLayout()
 str1.addWidget(labelEmail, 30)
@@ -40,19 +91,41 @@ col = QVBoxLayout()
 col.addLayout(str1)
 col.addLayout(str2)
 col.addLayout(str3)
+col.addWidget(button3)
 col.addWidget(button)
 
 win.setLayout(col)
 win.show()
+win2.show()
 
-def onClick():
-    email = ""
-    password = ""
-    FROM = ""
+msg = createMsg()
+
+
+
+
+
+def onClick():    
     TO = editTextEmail.text()
     subject = editTextSubject.text()
     text = editTextMessage.toPlainText()
-    sendMail(email, password, FROM, TO, text, subject)
+    sendMail(msg,loginEmail, loginPassword, loginEmail, TO, text, subject, loginServerAdress, loginPort)
+
+def onClick2():
+    global loginEmail, loginPassword, loginServerAdress, loginPort
+    loginEmail = editTextLogin.text()
+    loginPassword = editTextPassword.text()
+    loginServerAdress = editTextServerAdress.text()
+    loginPort = int(editTextPort.text())
+
+def onClick3():
+    add(msg)
+    
+
+  
+
+
 
 button.clicked.connect(onClick)
+button2.clicked.connect(onClick2)
+button3.clicked.connect(onClick3)
 app.exec()
