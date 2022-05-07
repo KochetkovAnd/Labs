@@ -53,7 +53,7 @@ class my_turtle:
 root = Tk()
 canvas = Canvas(root, width=Width, height=Height)
 canvas.pack()
-
+c="dfsdfsf"
 tr = my_turtle(Width / 2, Height / 2, pi / 2)
 
 
