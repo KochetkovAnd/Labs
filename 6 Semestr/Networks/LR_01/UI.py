@@ -12,7 +12,7 @@ win.setWindowTitle("LR_2")
 
 button = QPushButton("Построить\nдерево")
 editText = QLineEdit()
-treeText1 = QTextEdit()
+treeText1 =  QTextEdit()
 treeText2 = QTextEdit()
 
 label1 = QLabel("Список ссылок")

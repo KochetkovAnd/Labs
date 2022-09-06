@@ -5,12 +5,10 @@ from main import *
 width = 600
 height = 400
 
-loginEmail = ""
-loginPassword = ""
-loginServerAdress = ""
+loginEmail = "testkochet@gmail.com"
+loginPassword = "12121212ee"
+loginServerAdress = "smtp.gmail.com"
 loginPort = 587
-
-
 
 app = QApplication([])
 
@@ -23,11 +21,10 @@ labelPassword = QLabel("Пароль аккаунта: ")
 labelServerAdress = QLabel("Адрес SMTP сервера: ")
 labelPort = QLabel("Порт подключения к серверу: ")
 
-editTextLogin = QLineEdit("")
-editTextPassword = QLineEdit("")
-editTextServerAdress = QLineEdit("")
+editTextLogin = QLineEdit("testkochet@gmail.com")
+editTextPassword = QLineEdit("12121212ee")
+editTextServerAdress = QLineEdit("smtp.gmail.com")
 editTextPort = QLineEdit("587")
-
 
 button2 = QPushButton("Войти")
 
@@ -67,7 +64,7 @@ label1 = QLabel("Тема письма: ")
 label2 = QLabel("Текст письма: ")
 labelEmail = QLabel("Кому")
 
-editTextEmail = QLineEdit("")
+editTextEmail = QLineEdit("kochetpwr@gmail.com")
 editTextSubject = QLineEdit("")
 editTextMessage = QPlainTextEdit("")
 
@@ -95,14 +92,10 @@ col.addWidget(button3)
 col.addWidget(button)
 
 win.setLayout(col)
-win.show()
+
 win2.show()
 
 msg = createMsg()
-
-
-
-
 
 def onClick():    
     TO = editTextEmail.text()
@@ -116,14 +109,11 @@ def onClick2():
     loginPassword = editTextPassword.text()
     loginServerAdress = editTextServerAdress.text()
     loginPort = int(editTextPort.text())
+    win2.hide()
+    win.show()
 
 def onClick3():
-    add(msg)
-    
-
-  
-
-
+    add(msg) 
 
 button.clicked.connect(onClick)
 button2.clicked.connect(onClick2)
