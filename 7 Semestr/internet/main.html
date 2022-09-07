@@ -1,4 +1,5 @@
 <head>
+    <title>Б-У Авто</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -8,7 +9,6 @@
         <ul>
             <li><a href="#" class="active">Главная</a></li>
             <li><a href="#">Легковые</a>
-                <!-- первый уровень выпадающего списка -->
                 <ul>
                     <li><a href="#">Седаны</a></li>
                     <li><a href="#">Хэтчбеки</a></li>
@@ -33,117 +33,130 @@
             <li style="float:right"><a href="#">Поддержка</a></li>
         </ul>
     </nav>
-    <div class="card_container">
-        <div class="card">
-            <div class="card_block_300">
+
+
+    <div style="margin-top: 75px;">
+        <div class="container_h">
+
+            <legend>Производитель</legend>
+
+            <div>
+                <input type="checkbox" id="0">
+                <label for="0">Ford</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="1">
+                <label for="1">Subaru</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="2">
+                <label for="2">Toyota</label>
+            </div>
+        </div>
+        <div class="container_h">
+            <div class="card">
                 <img src="images/Fiesta.jpg" alt="" class="card_image">
+
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">Ford Fiesta Mk6</p>
+                    <p class="font_info">
+                        1.4л/96л.с./Бензин<br>
+                        Автомат<br>
+                        Хэтчбек 5 дв.
+                    </p>
+                    <p class="font_town">Самара</p>
+                </div>
+                <div class="card_block" style="width:200px">
+                    <p class="font_name">649000</p>
+                    <p class="font_info">Передний<br> Красный
+                    </p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">2009г</p>
+                    <p class="font_name">68200км</p>
+                </div>
             </div>
-            <div class="card_block_200">
-                <p class="font_name">Ford Fiesta Mk6</p>
-                <p class="font_info">1.4л/96л.с./Бензин<br> Автомат
-                    <br> Хэтчбек 5 дв.</p>
-                <br>
-                <br>
-                <p class="font_town">Самара</p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">649000</p>
-                <p class="font_info">Передний<br> Красный
-                </p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">2009г</p>
-                <p class="font_name">68200км</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_block_300">
+            <div class="card">
                 <img src="images/Mondeo.jpg" alt="" class="card_image">
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">Ford Mondeo IV</p>
+                    <p class="font_info">2.0л/149л.с./Бензин<br> Автомат
+                        <br> Седан
+                    </p>
+                    <p class="font_town">Тамбов</p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">699000</p>
+                    <p class="font_info">Передний<br> Белый
+                    </p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">2011г</p>
+                    <p class="font_name">161863км</p>
+                </div>
             </div>
-            <div class="card_block_200">
-                <p class="font_name">Ford Mondeo IV</p>
-                <p class="font_info">2.0л/149л.с./Бензин<br> Автомат
-                    <br> Седан
-                </p>
-                <br>
-                <br>
-                <p class="font_town">Тамбов</p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">699000</p>
-                <p class="font_info">Передний<br> Белый
-                </p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">2011г</p>
-                <p class="font_name">161863км</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_block_300">
+            <div class="card">
                 <img src="images/Focus.jpg" alt="" class="card_image">
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">Ford Focus III</p>
+                    <p class="font_info">1.6л/85л.с./Бензин<br> Механика
+                        <br> Хэтчбек 5 дв.
+                    </p>
+                    <p class="font_town">Таганрог</p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">589900</p>
+                    <p class="font_info">Передний<br> Синий
+                    </p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">2013г</p>
+                    <p class="font_name">170000км</p>
+                </div>
             </div>
-            <div class="card_block_200">
-                <p class="font_name">Ford Focus III</p>
-                <p class="font_info">1.6л/85л.с./Бензин<br> Механика
-                    <br> Хэтчбек 5 дв.</p>
-                <br>
-                <br>
-                <p class="font_town">Таганрог</p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">589900</p>
-                <p class="font_info">Передний<br> Синий
-                </p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">2013г</p>
-                <p class="font_name">170000км</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_block_300">
+            <div class="card">
                 <img src="images/Forester.jpg" alt="" class="card_image">
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">Subaru Forester II</p>
+                    <p class="font_info">2.5л/173л.с./Бензин<br> Автомат
+                        <br> Внедорожник 5 дв.
+                    </p>
+                    <p class="font_town">Москва</p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">685000</p>
+                    <p class="font_info">Полный<br> Зеленый
+                    </p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">2005г</p>
+                    <p class="font_name">263900км</p>
+                </div>
             </div>
-            <div class="card_block_200">
-                <p class="font_name">Subaru Forester II</p>
-                <p class="font_info">2.5л/173л.с./Бензин<br> Автомат
-                    <br> Внедорожник 5 дв.</p>
-                <br>
-                <br>
-                <p class="font_town">Москва</p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">685000</p>
-                <p class="font_info">Полный<br> Зеленый
-                </p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">2005г</p>
-                <p class="font_name">263900км</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_block_300">
+            <div class="card">
                 <img src="images/Outback.jpg" alt="" class="card_image">
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">Subaru Outback II</p>
-                <p class="font_info">2.5л/165л.с./Бензин<br> Автомат
-                    <br> Универсал 5 дв.</p>
-                <br>
-                <br>
-                <p class="font_town">Санкт-Петербург</p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">249700</p>
-                <p class="font_info">Полный<br> Зеленый
-                </p>
-            </div>
-            <div class="card_block_200">
-                <p class="font_name">1999г</p>
-                <p class="font_name">300000км</p>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">Subaru Outback II</p>
+                    <p class="font_info">2.5л/165л.с./Бензин<br> Автомат
+                        <br> Универсал 5 дв.
+                    </p>
+                    <p class="font_town">Санкт-Петербург</p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">249700₽</p>
+                    <p class="font_info">Полный<br> Зеленый
+                    </p>
+                </div>
+                <div class="card_block" style="width: 200px">
+                    <p class="font_name">1999г</p>
+                    <p class="font_name">300000км</p>
+                </div>
             </div>
         </div>
     </div>
+
+
+
 </body>
